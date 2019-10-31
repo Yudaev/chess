@@ -1,0 +1,32 @@
+.desk {
+    width: 640px;
+    height: 640px;
+    margin: 30px auto;
+    border: 1px solid #c76a4a;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.block {
+    width: 80px;
+    height: 80px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 70px;
+    cursor: pointer;
+    z-index: 1;
+}
+
+.dark-block {
+    background: #c76a4a;
+}
+
+.light-block {
+    background: #ecc49f;
+}
+
+.choosen {
+    outline: 2px solid white;
+    z-index: 2;
+}
