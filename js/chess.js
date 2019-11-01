@@ -38,6 +38,7 @@ function drawDesk() {
     let desk = document.querySelector('.desk'),
         block,
         color = true;
+
     removeElementsByClass('block');
     for (let i = 0; i < 8; i++){
         for (let j = 0; j < 8; j++){
@@ -77,8 +78,9 @@ function chooseFigure(){
     }
 
     if (field[currentCoord[0]][currentCoord[1]] !== '') {
-        console.log(this);
+
         this.classList.toggle("choosen");
+        console.log(this);
         if (firstCoord === '') firstCoord = currentCoord;
     }
 
@@ -89,19 +91,30 @@ function chooseFigure(){
     drawDesk();
 }
 
-// let column_count = 8;
-// let row_count = 8;
-// let field = document.getElementById('field');
-// let cells = [];
-// for(let i = 0; i < row_count; i++) {
-//     for(let j = 0; j < column_count; j++) {
-//         let item = document.createElement('div');
-//         item.setAttribute('type', 'black'); // bla bla
-//         item.setAttribute('isFigure', 'true'); // bla bla
-//         item.addEventListener('click', function () { });
-//         cells.push(item);
-//         fields.appendChild(item);
-//     }
-// }
+function drawFullDesk() {
+    let container = document.querySelector('.container'),
+        borders = ['top-border', 'left-border', 'right-border', 'bottom-border'],
+        words = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H'];
 
-drawDesk();
+    for (let i = 0; i < borders.length; i++){
+        let border = document.createElement('div');
+        if (i < 2) {
+            border.className = borders[i];
+            container.insertBefore(border, container.children[i]);
+        } else {
+            container.appendChild(border);
+            border.className = borders[i];
+        }
+
+        if(i === 1) drawDesk();
+
+        for(let j = 0; j < words.length; j++) {
+            let word = document.createElement('div');
+            if (i === 0 || i === 3) word.innerText = words[j];
+            else word.innerText = j + 1;
+            border.appendChild(word);
+        }
+    }
+}
+
+drawFullDesk();
