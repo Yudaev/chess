@@ -38,8 +38,7 @@ function drawDesk() {
     let desk = document.querySelector('.desk'),
         block,
         color = true;
-    removeElementsByClass('block dark-block');
-    removeElementsByClass('block light-block');
+    removeElementsByClass('block');
     for (let i = 0; i < 8; i++){
         for (let j = 0; j < 8; j++){
             if (j == 0) color = !color;
@@ -71,13 +70,18 @@ function chooseFigure(){
     console.log(this.id.split(''));
     let currentCoord = this.id.split('');
 
-    if (firstCoord !== '') secondCoord = currentCoord;
+    if (firstCoord !== '') {
+        secondCoord = currentCoord;
+        field[secondCoord[0]][secondCoord[1]] = field[firstCoord[0]][firstCoord[1]];
+        field[firstCoord[0]][firstCoord[1]] = '';
+    }
+
     if (field[currentCoord[0]][currentCoord[1]] !== '') {
+        console.log(this);
         this.classList.toggle("choosen");
         if (firstCoord === '') firstCoord = currentCoord;
     }
-    field[secondCoord[0]][secondCoord[1]] = field[firstCoord[0]][firstCoord[1]];
-    field[firstCoord[0]][firstCoord[1]] = '';
+
     if (firstCoord !== '' && secondCoord !== ''){
         firstCoord = '';
         secondCoord = '';
